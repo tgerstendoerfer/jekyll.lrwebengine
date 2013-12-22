@@ -1,0 +1,15 @@
+---
+layout: gallery
+title: $model.metadata.galleryName.value
+
+---
+
+<lr:ThumbnailGrid>
+<lr:GridPhotoCell>
+<a href="$model.photoSizes.large.directory/<%= image.exportFilename %>.jpg" title="$image.metadata.title"
+  ><img src="$model.photoSizes.thumb.directory/<%= image.exportFilename %>.jpg"
+        width="$image.renditions.thumb.width"
+        height="$image.renditions.thumb.height"
+        alt="$image.metadata.title" /></a>
+</lr:GridPhotoCell>
+</lr:ThumbnailGrid>

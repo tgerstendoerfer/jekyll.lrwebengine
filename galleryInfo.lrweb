@@ -1,0 +1,158 @@
+return {
+	LrSdkVersion = 1.3,
+	LrSdkMinimumVersion = 1.3, -- minimum SDK version required by this plugin
+
+	title = LOC "$$$/GalleryName/Title=TG Jekyll Gallery",
+	id = "com.gerstendoerfer.jekyllgallery",
+	galleryType = "lua",
+	maximumGallerySize = 50000,
+	model = {
+		["photoSizes.large.directory"] = "large",
+		["photoSizes.large.cropMode"] = "normal",
+		["photoSizes.large.height"] = function() return photoSizes.large.width end,
+		["photoSizes.large.maxHeight"] = 2701,
+		["photoSizes.large.maxWidth"] = 2701,
+		["photoSizes.large.metadataExportMode"] = function() return photoSizes.thumb.metadataExportMode end,
+		["photoSizes.large.width"] = 960,
+		["photoSizes.thumb.directory"] = "thumb",
+		["photoSizes.thumb.cropMode"] = "normal",
+		["photoSizes.thumb.height"] = 150,
+		["photoSizes.thumb.metadataExportMode"] = "copyright",
+		["photoSizes.thumb.width"] = 150,
+		["photoSizes.tracking"] = false,
+		["lightroomApplication.identityPlateExport"] = "(main)",
+		["lightroomApplication.jpegQuality"] = 85,
+		["lightroomApplication.sizeBeingViewed"] = "thumb",
+		["lightroomApplication.useWatermark"] = false,
+		["metadata.groupDescription.value"] = LOC "$$$/AgWPG/Templates/HTML/DefaultValues/ExampleGroupDescription=",
+		["metadata.galleryName.value"] = LOC "$$$/AgWPG/Templates/HTML/DefaultValues/ExampleGalleryName=Title",
+
+		["metadata.homePage.value"] = {
+			value = "index.html",
+			metadata = { [ 'ag:dataType' ] = 'webLink' },
+		},
+		["perImageSetting.description"] = {
+			enabled = true,
+			value = "{{com.adobe.caption}}",
+		},
+		["perImageSetting.title"] = {
+			enabled = true,
+			value = "{{com.adobe.title}}",
+		},
+		["perImageSetting.copyright"] = {
+			enabled = true,
+			value = "{{com.adobe.copyright}}",
+		},
+	},
+	properties = {
+		perImage = {
+			{
+				id = 'title',
+				title = LOC "$$$/WPG/HTML/CSS/properties/ImageTitle=Title",
+			},
+			{
+				id = 'description',
+				title = LOC "$$$/WPG/HTML/CSS/properties/ImageCaption=Caption",
+			},
+			{
+				id = 'copyright',
+				title = LOC "$$$/WPG/HTML/CSS/properties/ImageCopyright=Copyright",
+			},
+		},
+	},
+
+	views = function( controller, f )
+		local LrView = import 'LrView'
+		local bind = LrView.bind
+		return { 
+
+		labels = WPGPanelUI.mainView {
+			bindToObject = controller,
+			WPGPanelUI.subdivided_sections {
+				WPGPanelUI.content_column {
+					WPGPanelUI.row {
+						f:static_text  {
+							title = LOC "$$$/AgWPG/Templates/HTML/Panel/Labels/GalleryNameTitle=Gallery Title",
+						},
+						f:mru_popup_view {
+							place_horizontal = 1,
+							place_vertical = 0.5,
+							boundEditValue = bind "metadata.galleryName.value",
+							boundEditTracking = bind "metadata.galleryName.tracking",
+							preferenceKey = "galleryName"
+						},
+					},
+					WPGPanelUI.TextInput {
+						resize_to_fit_text_height = true,
+						maximumLength = 1600,
+						value = bind "metadata.galleryName.value",
+						tracking = bind "metadata.galleryName.tracking",
+						text_color=AgPanel.bright_text_color,
+					},
+				},
+				WPGPanelUI.content_column {
+					WPGPanelUI.row {
+						f:static_text  {
+							title = LOC "$$$/AgWPG/Templates/HTML/Panel/Labels/GroupDescription=Collection Description",
+						},
+						f:mru_popup_view {
+							place_horizontal = 1,
+							place_vertical = 0.5,
+							boundEditValue = bind "metadata.groupDescription.value",
+							boundEditTracking = bind "metadata.groupDescription.tracking",
+							preferenceKey = "groupDescription"
+						},
+					},
+					WPGPanelUI.TextInput {
+						resize_to_fit_text_height = true,
+						maximumLength = 3200,
+						value = bind "metadata.groupDescription.value",
+						tracking = bind "metadata.groupDescription.tracking",
+						text_color=AgPanel.bright_text_color,
+					},
+				},
+			},
+		},
+		outputSettings = WPGPanelUI.mainView {
+			bindToObject = controller,
+			WPGPanelUI.subdivided_sections {
+				WPGPanelUI.header_section_label {
+					title = LOC "$$$/AgWPG/Templates/HTML/Panel/Labels/ImageHandling=Large Images",
+				},
+				WPGPanelUI.slider_content_column {
+					WPGPanelUI.slider_row {
+						title = LOC "$$$/AgWPG/Templates/HTML/Panel/Labels/MaximumImageSizeLabel/JPEGQualityLabel=Quality",
+						property = "lightroomApplication.jpegQuality",
+						tracking = "lightroomApplication.jpegQuality.tracking",
+						tracking_value = "qualityTracking",
+						unit = "",
+						propMax = 100,
+						propMin = 0,
+						width_in_digits = 4,
+						precision = 0,
+					},
+					WPGPanelUI.metadataModeControl {
+						bindingValue = "photoSizes.thumb.metadataExportMode",
+					},
+				},
+				WPGPanelUI.slider_content_column {
+					WPGPanelUI.checkbox_row {
+						title = LOC( "$$$/AgWPG/Templates/HTML/Panel/Checkbox/UseWatermark=Add Copyright Watermark" ),
+						bindingValue = [[lightroomApplication.useWatermark]],
+						indentWithSliders=true,
+					},
+				},
+			},
+		},
+	}
+	end,
+	
+	galleryOptions = { 
+		thumbnail = "resources/version_info.png",
+		galleryName = LOC "$$$/AgWPG/Templates/HTML/Title=Lightroom Jekyll Gallery",
+		galleryDescription = {
+			 LOC "$$$/AgWPG/Templates/HTML/Description=This web gallery creates the files for integration into a Jekyll-based web site.",
+		},
+		galleryVersion = [[1.3]],
+	}
+}

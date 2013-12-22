@@ -1,0 +1,12 @@
+--[[
+	Lightroom Web Gallery manifest.
+	Maps template files to the actual files to be produced.
+]]
+
+importTags( "lr", "com.adobe.lightroom.default" )
+
+AddGridPages {
+	template='grid.html',
+	rows=1000,
+	columns=50,
+}
