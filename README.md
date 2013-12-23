@@ -14,9 +14,9 @@ though).
 Installation
 ------------
 
-Fork/clone the repository directly to your
-`~/Library/Application Support/Adobe/Lightroom/Web Galleries` directory
-on OS&nbsp;X, or `%APPDATA%\Adobe\Lightroom\Web Galleries` on Windows.
+To install the gallery, just clone the repository directly to your personal *Web Galleries* folder;
+`~/Library/Application Support/Adobe/Lightroom/Web Galleries` on OSX, or
+`%APPDATA%\Adobe\Lightroom\Web Galleries` on Windows, respectively.
 
 Usage
 -----
