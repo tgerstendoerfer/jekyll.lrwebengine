@@ -34,30 +34,17 @@ return {
 		["perImageSetting.description"] = {
 			enabled = true,
 			value = "{{com.adobe.caption}}",
+			title = LOC "$$$/WPG/HTML/CSS/properties/ImageCaption=Caption",
 		},
 		["perImageSetting.title"] = {
 			enabled = true,
 			value = "{{com.adobe.title}}",
+			title = LOC "$$$/WPG/HTML/CSS/properties/ImageTitle=Title",
 		},
 		["perImageSetting.copyright"] = {
 			enabled = true,
 			value = "{{com.adobe.copyright}}",
-		},
-	},
-	properties = {
-		perImage = {
-			{
-				id = 'title',
-				title = LOC "$$$/WPG/HTML/CSS/properties/ImageTitle=Title",
-			},
-			{
-				id = 'description',
-				title = LOC "$$$/WPG/HTML/CSS/properties/ImageCaption=Caption",
-			},
-			{
-				id = 'copyright',
-				title = LOC "$$$/WPG/HTML/CSS/properties/ImageCopyright=Copyright",
-			},
+			title = LOC "$$$/WPG/HTML/CSS/properties/ImageCopyright=Copyright",
 		},
 	},
 
