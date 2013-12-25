@@ -146,13 +146,4 @@ return {
 		},
 	}
 	end,
-	
-	galleryOptions = { 
-		thumbnail = "resources/version_info.png",
-		galleryName = LOC "$$$/AgWPG/Templates/HTML/Title=Lightroom Jekyll Gallery",
-		galleryDescription = {
-			 LOC "$$$/AgWPG/Templates/HTML/Description=This web gallery creates the files for integration into a Jekyll-based web site.",
-		},
-		galleryVersion = [[1.3]],
-	}
 }
