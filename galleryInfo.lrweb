@@ -7,7 +7,7 @@ return {
 	galleryType = "lua",
 	maximumGallerySize = 50000,
 	model = {
-		["photoSizes.large.directory"] = "large",
+		["photoSizes.large.directory"] = ".",
 		["photoSizes.large.cropMode"] = "normal",
 		["photoSizes.large.height"] = function() return photoSizes.large.width end,
 		["photoSizes.large.maxHeight"] = 2701,
