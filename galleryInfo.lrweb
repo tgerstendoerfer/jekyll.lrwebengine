@@ -9,10 +9,10 @@ return {
 	model = {
 		["photoSizes.large.directory"] = ".",
 		["photoSizes.large.height"] = function() return photoSizes.large.width end,
+		["photoSizes.large.width"] = 1500,
 		["photoSizes.large.maxHeight"] = 2701,
 		["photoSizes.large.maxWidth"] = 2701,
 		["photoSizes.large.metadataExportMode"] = function() return photoSizes.thumb.metadataExportMode end,
-		["photoSizes.large.width"] = 960,
 		["photoSizes.thumb.directory"] = "thumb",
 		["photoSizes.thumb.height"] = 196,
 		["photoSizes.thumb.width"] = 400,
