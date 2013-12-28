@@ -29,6 +29,12 @@ return {
 			value = "index.html",
 			metadata = { [ 'ag:dataType' ] = 'webLink' },
 		},
+
+		["perImageSetting.date"] = {
+			enabled = true,
+			value = "{{date_YYYY}}",
+			title = LOC "$$$/WPG/HTML/CSS/properties/ImageDate=Year",
+		},
 		["perImageSetting.description"] = {
 			enabled = true,
 			value = "{{com.adobe.caption}}",
@@ -43,6 +49,26 @@ return {
 			enabled = true,
 			value = "{{com.adobe.copyright}}",
 			title = LOC "$$$/WPG/HTML/CSS/properties/ImageCopyright=Copyright",
+		},
+		["perImageSetting.location"] = {
+			enabled = true,
+			value = "{{com.adobe.location}}",
+			title = LOC "$$$/WPG/HTML/CSS/properties/ImageLocation=Location",
+		},
+		["perImageSetting.city"] = {
+			enabled = true,
+			value = "{{com.adobe.city}}",
+			title = LOC "$$$/WPG/HTML/CSS/properties/ImageCity=City",
+		},
+		["perImageSetting.state"] = {
+			enabled = true,
+			value = "{{com.adobe.state}}",
+			title = LOC "$$$/WPG/HTML/CSS/properties/ImageState=State/Province",
+		},
+		["perImageSetting.country"] = {
+			enabled = true,
+			value = "{{com.adobe.country}}",
+			title = LOC "$$$/WPG/HTML/CSS/properties/ImageCountry=Country",
 		},
 	},
 

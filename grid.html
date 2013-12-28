@@ -5,11 +5,34 @@ title: $model.metadata.galleryName.value
 ---
 
 <lr:ThumbnailGrid>
-<lr:GridPhotoCell>
-<a href="$model.photoSizes.large.directory/<%= image.exportFilename %>.jpg" title="$image.metadata.title"
-  ><img src="$model.photoSizes.thumb.directory/<%= image.exportFilename %>.jpg"
-        width="$image.renditions.thumb.width"
-        height="$image.renditions.thumb.height"
-        alt="$image.metadata.title" /></a>
+<lr:GridPhotoCell><%
+
+	local function notempty(s)
+		return s and s ~= ''
+	end
+
+	local function getfirstnonempty(...)
+		for i, v in ipairs(arg) do
+			if notempty(v) then
+				return v
+			end
+		end
+	end
+
+	local thumb = image.renditions.thumb
+	local metadata = image.metadata
+
+	local title = getfirstnonempty(metadata.title, metadata.location, metadata.city, metadata.state, metadata.country)
+
+	if metadata.date then
+		if notempty(title) then
+			title = title .. ", " .. metadata.date
+		else
+			title = metadata.date
+		end
+	end
+
+%><a href="$model.photoSizes.large.directory/<%= image.exportFilename %>.jpg" title="$title"
+  ><img src="$model.photoSizes.thumb.directory/<%= image.exportFilename %>.jpg" width="$thumb.width" height="$thumb.height" alt="$title" /></a>
 </lr:GridPhotoCell>
 </lr:ThumbnailGrid>
