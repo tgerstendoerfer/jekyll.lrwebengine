@@ -4,7 +4,15 @@ title: $model.metadata.galleryName.value
 
 description: $model.metadata.groupDescription.value
 
-<% n = 0 %>
+<%
+
+function getimagepath(image, photoSize)
+	path = photoSize.directory .. "/" .. image.exportFilename .. ".jpg"
+	return path:gsub("^%.%/", "")
+end
+
+n = 0
+%>
 galleries:
 <lr:ThumbnailGrid>
 <lr:GridPhotoCell>
@@ -12,7 +20,8 @@ galleries:
 	local large = image.renditions.large
 	if n < 5 and (large.width > large.height) then
 %>
-  - img: $model.photoSizes.large.directory/<%= image.exportFilename %>.jpg
+  - img: <%= getimagepath(image, model.photoSizes.large) %>
+
 <%
 		n = n+1
 	end
@@ -50,6 +59,6 @@ galleries:
 		end
 	end
 
-%><a href="$model.photoSizes.large.directory/<%= image.exportFilename %>.jpg" title="$title"><img src="$model.photoSizes.thumb.directory/<%= image.exportFilename %>.jpg" width="$thumb.width" height="$thumb.height" alt="$title" /></a>
+%><a href="<%= getimagepath(image, model.photoSizes.large) %>" title="$title"><img src="<%= getimagepath(image, model.photoSizes.thumb) %>" width="$thumb.width" height="$thumb.height" alt="$title" /></a>
 </lr:GridPhotoCell>
 </lr:ThumbnailGrid>
