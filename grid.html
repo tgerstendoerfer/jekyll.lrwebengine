@@ -4,6 +4,22 @@ title: $model.metadata.galleryName.value
 
 description: $model.metadata.groupDescription.value
 
+<% n = 0 %>
+galleries:
+<lr:ThumbnailGrid>
+<lr:GridPhotoCell>
+<%
+	local large = image.renditions.large
+	if n < 5 and (large.width > large.height) then
+%>
+  - img: $model.photoSizes.large.directory/<%= image.exportFilename %>.jpg
+<%
+		n = n+1
+	end
+%>
+</lr:GridPhotoCell>
+</lr:ThumbnailGrid>
+
 ---
 
 <lr:ThumbnailGrid>
